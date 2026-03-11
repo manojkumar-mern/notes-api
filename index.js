@@ -7,9 +7,10 @@ let notes = [{ id: Date.now(), title: "First Note", content: "This is my first n
 
 // root route
 app.get("/", (req, res) => {
-  res.send("Notes API is running 🚀");
+  res.send("Notes API is running");
 });
 
+//GET a note
 app.get("/notes/:id", (req, res) => {
   const id = Number(req.params.id);
   const note = notes.find((n) => n.id === id);
@@ -42,6 +43,7 @@ app.post("/notes", (req, res) => {
   res.status(201).json(newNote);
 });
 
+//PUT update notes
 app.put("/notes/:id", (req, res) => {
   const id = Number(req.params.id);
   const note = notes.find((n) => n.id === id);
@@ -56,6 +58,7 @@ app.put("/notes/:id", (req, res) => {
   res.json(note);
 });
 
+//DELETE notes
 app.delete("/notes/:id", (req, res) => {
   const id = Number(req.params.id);
   const noteExists = notes.some((note) => note.id === id);
